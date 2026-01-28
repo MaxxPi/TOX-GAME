@@ -4,8 +4,8 @@
   <title>Voxel Platformer</title>
   <style>
 #gameCanvas {
-  background-image: url('path/to/your/background.png'); /* Image path */
-  background-size: cover; /* Or 'contain', '100% 100%' */
+  background-image: url('path/to/your/background.png'); /* backround pls do not edit this*/
+  background-size: cover; 
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -47,7 +47,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// Map (# = air, 1 = block, ^ = death)
+// map to make it easier
 const voxelMap = [
   "#####",
   "#####",
@@ -64,7 +64,7 @@ const voxelMap = [
 const TILE_SIZE = 50;
 const GRAVITY = 0.8;
 
-// Spawn on first "1" in "#111#"
+//when you die you go to start
 const spawnRow = 4;
 const spawnCol = 1;
 
@@ -80,7 +80,6 @@ const player = {
 
 const keys = { left:false, right:false, jump:false };
 
-// ⭐ CAMERA (with smoothing)
 const camera = {
   x: 0,
   y: 0,
@@ -95,7 +94,6 @@ function updateCamera() {
   camera.y += (targetY - camera.y) * camera.ease;
 }
 
-// Keyboard controls
 document.addEventListener("keydown", e => {
   if (e.key === "ArrowRight" || e.key === "d") keys.right = true;
   if (e.key === "ArrowLeft" || e.key === "a") keys.left = true;
@@ -107,7 +105,7 @@ document.addEventListener("keyup", e => {
   if (e.key === " " || e.key === "w" || e.key === "ArrowUp") keys.jump = false;
 });
 
-// Button binding helper
+
 function bindButton(id, onDown, onUp) {
   const btn = document.getElementById(id);
 
@@ -126,7 +124,7 @@ btn.addEventListener("mouseup", onUp);
   }, { passive: false });
 }
 
-// Bind on-screen buttons
+
 bindButton("leftBtn",  () => keys.left = true,  () => keys.left = false);
 bindButton("rightBtn", () => keys.right = true, () => keys.right = false);
 bindButton("jumpBtn",  () => {
@@ -136,7 +134,7 @@ bindButton("jumpBtn",  () => {
   }
 }, () => {});
 
-// Tile lookup
+
 function getTileAtXY(x, y) {
   const col = Math.floor(x / TILE_SIZE);
   const row = Math.floor(y / TILE_SIZE);
@@ -144,7 +142,7 @@ function getTileAtXY(x, y) {
   return voxelMap[row][col];
 }
 
-// Respawn
+
 function respawn() {
   player.x = spawnCol * TILE_SIZE + 5;
   player.y = spawnRow * TILE_SIZE - 40;
@@ -152,23 +150,23 @@ function respawn() {
   player.vy = 0;
 }
 
-// Update loop
+
 function update() {
   // Horizontal movement
   if (keys.right) player.vx = 3;
   else if (keys.left) player.vx = -3;
   else player.vx = 0;
 
-  // Jump (keyboard)
+
   if (keys.jump && player.onGround) {
     player.vy = -12;
     player.onGround = false;
   }
 
-  // Gravity
+  // gravity 
   player.vy += GRAVITY;
 
-  // Horizontal collision
+  // idk what this is but its so that you dont go through walls
   let newX = player.x + player.vx;
 
   if (player.vx > 0) {
@@ -207,21 +205,21 @@ function update() {
     }
   }
 
-  // Death check
+  
   const bottomY = player.y + player.height;
   const leftTile = getTileAtXY(player.x + 1, bottomY);
   const rightTile = getTileAtXY(player.x + player.width - 1, bottomY);
   if (leftTile === "^" || rightTile === "^") respawn();
 
-  // ⭐ Update camera
+  
   updateCamera();
 }
 
-// Draw loop
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw tiles with camera offset
+ 
   for (let row = 0; row < voxelMap.length; row++) {
     for (let col = 0; col < voxelMap[row].length; col++) {
       const tile = voxelMap[row][col];
@@ -245,7 +243,7 @@ function draw() {
     }
   }
 
-  // Draw player with camera offset
+ 
   ctx.fillStyle = "red";
   ctx.fillRect(
     player.x - camera.x,
@@ -255,7 +253,7 @@ function draw() {
   );
 }
 
-// Game loop
+
 function gameLoop() {
   update();
   draw();

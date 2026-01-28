@@ -269,6 +269,25 @@ function gameLoop() {
 gameLoop();
 
 </script>
+<style> #leftBtn {
+  position: fixed; 
+  bottom: 10px;  
+  left: 300px;
+
+
+}
+#rightBtn {
+  position: fixed; 
+  bottom: 10px;  
+  right: 300px;
+  
+  }
+  
+  #jumpBtn {
+  position: fixed; 
+  bottom: 10px;
+  left: 540px;
+</style>
 
 </body>
 </html>

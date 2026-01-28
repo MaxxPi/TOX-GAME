@@ -289,7 +289,7 @@ gameLoop();
   bottom: 10px;
   left: 540px;
 </style>
-
+</head>
 </body>
 </html>
   

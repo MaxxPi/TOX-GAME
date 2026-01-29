@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML Change Example</title>
+</head>
+<body>
+
+<div id="content_container">
+    <h1>Initial HTML Content</h1>
+    <p>This is the original paragraph.</p>
+</div>
+
+<script>
+// Function that replaces the HTML
+function changeContent() {
+    var newHTML = `
+        <h1>New HTML Content</h1>
+        <p>This is the new paragraph that replaced the old one.</p>
+    `;
+    document.getElementById("content_container").innerHTML = newHTML;
+}
+
+// Automatically run after 3 seconds
+setTimeout(changeContent, 3000);
+</script>
+
+</body>
+</html>

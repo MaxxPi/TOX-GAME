@@ -1,6 +1,7 @@
  <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>const tileSize = 40; // pixels per tile function drawRamp(x, y) { ctx.fillStyle = "blue"; ctx.beginPath(); ctx.moveTo(x * tileSize, (y + 1) * tileSize); // bottom-left ctx.lineTo((x + 1) * tileSize, (y + 1) * tileSize); // bottom-right ctx.lineTo((x + 1) * tileSize, y * tileSize); // top-right ctx.closePath(); ctx.fill(); }</script>
     <meta charset="UTF-8">
   <title>Buildings</title>
   <style>

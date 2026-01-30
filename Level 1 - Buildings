@@ -76,16 +76,16 @@ const ctx = canvas.getContext("2d");
 
 // map to make it easier
 const voxelMap = [
-  "#####",
-  "#####",
-  "###1#",
-  "##11#",
-  "#111#",
-  "#####",
-  "#####",
-  "#####",
-  "#####",
-  "^^^^^"
+  "^#####",
+  "^#####",
+  "^###1#",
+  "^##11#",
+  "^#111#",
+  "^#####",
+  "^#####",
+  "^#####",
+  "^#####",
+  "^^^^^^"
 ];
 
 const TILE_SIZE = 50;
@@ -93,7 +93,7 @@ const GRAVITY = 0.8;
 
 //when you die you go to start
 const spawnRow = 4;
-const spawnCol = 1;
+const spawnCol = 2;
 
 const player = {
   x: spawnCol * TILE_SIZE + 5,

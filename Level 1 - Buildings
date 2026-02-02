@@ -101,7 +101,7 @@ const TILE_SIZE = 50;
 const GRAVITY = 0.8;
 
 //when you die you go to start
-const spawnRow = 7;
+const spawnRow = 10;
 const spawnCol = 2;
 
 const player = {
